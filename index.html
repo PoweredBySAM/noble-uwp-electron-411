@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script>
+      var noble = require('noble-uwp');
+
+      noble.on("stateChange", function (state) {
+        console.log("state: " + state);
+        if (state === 'poweredOn') {
+          noble.startScanning([], true);
+        } else {
+          this._noble.stopScanning();
+        }
+      });
+
+      noble.on("discover", function (peripheral) {
+        console.log("discovered " + peripheral);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+  </body>
+</html>
